@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +39,10 @@
   background-color: #f2f2f2; /* add background color */
   border-radius: 8px; /* add border radius */
   margin-bottom: 1rem; /* add margin bottom */
+
+  background-image: url("{% static 'images/lachat.jpg'%}");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .chat-messages ul {
@@ -89,14 +95,26 @@
 }
 
 #msg li{
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(173, 215, 224, 0.7);
   max-width: 30%;
   padding-left: 1em;
   padding-top: .3em;
   padding-bottom: .2em;
   color: white;
-  border-radius: 2%;
+  border-top-right-radius: 1.5em;
+  border-bottom-right-radius:1.5em ;
+  border-bottom-left-radius:1.5em;
   
+  
+  
+}
+
+#msg{
+ 
+}
+#msg li:nth-child(even){
+  transform: translate(150%,0%);
+
 }
 
 
@@ -128,9 +146,9 @@
 <script>
 
 const chatSocket = new WebSocket(
-            'wss://'
+            'ws://'
             + window.location.host
-            + '/ws/chat/'
+            + '/wss/chat/'
             + 'general'
             + '/'
         );
@@ -156,14 +174,23 @@ const chatSocket = new WebSocket(
             console.log('connection closed')
         }
 
-        document.querySelector('#submit').onclick=function(e){
+        var content=document.getElementById('content')
+       function sendcont(){
+            if (content.value!=''){
+              chatSocket.send(JSON.stringify({'message':content.value}))
 
-            var content=document.getElementById('content')
-            chatSocket.send(JSON.stringify({'message':content.value}))
+            }
+            
             content.value=''
 
 
+       }
+        document.querySelector('#submit').onclick=sendcont
+        content.addEventListener('keydown',(e)=>{
+          if(e.key=='Enter'){
+            sendcont()
+          }
 
-        }
+        })
 </script>
 </html>
