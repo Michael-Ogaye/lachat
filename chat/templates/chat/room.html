@@ -76,11 +76,27 @@
   color: #fff;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  border-radius: 50%; /* add border radius */
-}
+  /* border-radius: 50%; /* add border radius */
+} */
 
 .chat-input button:hover {
   background-color: #0069d9;
+}
+
+#content:focus{
+  outline: none;
+
+}
+
+#msg li{
+  background-color: rgba(0, 0, 0, 0.7);
+  max-width: 30%;
+  padding-left: 1em;
+  padding-top: .3em;
+  padding-bottom: .2em;
+  color: white;
+  border-radius: 2%;
+  
 }
 
 
@@ -142,8 +158,8 @@ const chatSocket = new WebSocket(
 
         document.querySelector('#submit').onclick=function(e){
 
-            var content=document.getElementById('content').value
-            chatSocket.send(JSON.stringify({'message':content}))
+            var content=document.getElementById('content')
+            chatSocket.send(JSON.stringify({'message':content.value}))
             content.value=''
 
 

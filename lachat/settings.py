@@ -75,12 +75,23 @@ WSGI_APPLICATION = 'lachat.wsgi.application'
 ASGI_APPLICATION = "lachat.asgi.application"
 
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels.layers.InMemoryChannelLayer',
        
+#     },
+# }
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("redis://red-chfrmkrhp8u065rihr8g", 6379)],
+        },
     },
 }
+
 
 
 # Database
