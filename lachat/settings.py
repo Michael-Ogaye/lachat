@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,14 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6hz53zydr+#!u1d%bmp4hxf*hp@v&cyzyi9z53g2m1mfpq+vjr'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['ogchat.onrender.com','127.0.0.1','ogayechat.onrender.com']
 
-
+MODE=config('MODE')
 # Application definition
 
 INSTALLED_APPS = [
@@ -76,36 +78,47 @@ TEMPLATES = [
 WSGI_APPLICATION = 'lachat.wsgi.application'
 ASGI_APPLICATION = "lachat.asgi.application"
 
+if MODE=='dev':
+    CHANNEL_LAYERS = {
+        'default': {
+            'BACKEND': 'channels.layers.InMemoryChannelLayer',
+        
+        },
+    }
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
-       
-    },
+else:
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels_redis.core.RedisChannelLayer",
+            "CONFIG": {
+                "hosts": [(config('REDIS_URL'), 6379)],
+            },
+        },
 }
-
-
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels_redis.core.RedisChannelLayer",
-#         "CONFIG": {
-#             "hosts": [("redis://red-chfrmkrhp8u065rihr8g:6379", 6379)],
-#         },
-#     },
-# }
 
 
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
+
+
+if MODE=='dev':
+     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
+
+
+
+# else:
+
+#     DATABASES = {
+#         "default": dj_database_url.config(default=config('DATABASE_URL'), conn_max_age=1800),
+#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
