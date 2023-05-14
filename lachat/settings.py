@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-6hz53zydr+#!u1d%bmp4hxf*hp@v&cyzyi9z53g2m1mfpq+vjr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ogchat.onrender.com','127.0.0.1']
+ALLOWED_HOSTS = ['ogchat.onrender.com','127.0.0.1','ogayechat.onrender.com']
 
 
 # Application definition
