@@ -46,7 +46,7 @@
   /* border-radius: 8px;  */
   margin-bottom: 1rem; /* add margin bottom */
 
-  background-image: url("{% static 'images/lachat.jpg'%}");
+  background-image: url("{% static 'images/bird.jpg'%}");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -206,6 +206,7 @@ const chatSocket = new WebSocket(
             </li>
 
             `
+            senAudio.play()
         };
 
         chatSocket.onclose = function(e) {
@@ -216,7 +217,7 @@ const chatSocket = new WebSocket(
        function sendcont(){
             if (content.value!=''){
               chatSocket.send(JSON.stringify({'message':content.value}))
-              senAudio.play()
+              
 
             }
             
