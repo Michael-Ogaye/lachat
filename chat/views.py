@@ -9,4 +9,4 @@ def index(request):
 def roomf(request, room_name):
     mode=settings.MODE
     pro='ws' if mode=='dev'else 'wss'
-    return render(request, "chat/room.html", {'prot':pro})
+    return render(request, "chat/room.html", {'prot':pro,'room_name':room_name})
