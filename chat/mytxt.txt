@@ -1,0 +1,37 @@
+Dynamic and results-driven professional web developer with a strong background in mechanical engineering and a passion for design. Offering two years of valuable experience in building robust web applications and APIs. Adept at providing innovative software solutions while combining engineering principles with cutting-edge technologies. Possessing a comprehensive understanding of mobile development and expertise in mechanical design, able to bridge the gap between software and hardware. Demonstrated ability to collaborate effectively within cross-functional teams and deliver high-quality products within tight deadlines. Strong problem-solving skills and a commitment to delivering exceptional user experiences. Committed to continuous learning and staying up-to-date with the latest industry trends. Proven ability to adapt quickly to new technologies and environments. Seeking an opportunity to leverage my diverse skill set to contribute to the development of impactful projects and drive business success.
+
+
+
+
+While in Moringa i did lots of projects some of the outstanding ones include 
+
+LIKEMEU: This is an instagram clone project, that provides users with functionalities such as creating account, view other users profile, follow , unfollow, create a post, make a comment to a post,as well as like and dislike  
+
+E-TABASAMU: A capstone project i thought of with an aim of helping SMEs and small income traders manage their financial statements, the app provide users with ability to view their transactions at a glance, as well as receive it in a Csv format
+
+
+Quizapp: This was an holistic django-angular project that was built out of collaboration with other 4 members , i   participated in building the quiz  Api with Django rest framework, the api is nicely documented tobe used in other programing languages and well as secured by token authentification
+ 
+The hoody: An application developed to connect users with their neighborhoods facilities and amenities, one can join a hood, add a facility they like, comment about it, as well as leave the hood
+
+
+
+I am writing to express my interest in the M-PESA Internship at M-PESA, as advertised on [Source/Job Board]. With my strong background in mechanical engineering, combined with my expertise in web development and passion for design, I believe I am well-suited to contribute to impactful projects and drive business success at M-PESA.
+
+Over the past two years, I have gained valuable experience in building robust web applications and APIs. I have successfully delivered innovative software solutions by leveraging engineering principles and incorporating cutting-edge technologies. My comprehensive understanding of mobile development and proficiency in mechanical design allow me to bridge the gap between software and hardware, ensuring seamless integration and optimal user experiences.
+
+Throughout my career, I have demonstrated strong problem-solving skills and a commitment to delivering exceptional results within tight deadlines. I have effectively collaborated with cross-functional teams, contributing to a collaborative and productive work environment. My continuous learning mindset enables me to stay up-to-date with the latest industry trends and quickly adapt to new technologies and environments.
+
+I am confident that my technical skills, combined with my passion for design and user-centric approach, make me a valuable asset to M-PESA. I am eager to contribute my diverse skill set to develop impactful projects that align with M-PESA's goals and values.
+
+Thank you for considering my application. I have attached my resume for your review. I would welcome the opportunity to discuss how my qualifications align with the M-PESA Internship and contribute to the success of M-PESA. I look forward to the possibility of an interview.
+
+Sincerely,
+
+[Your Name]
+
+
+
+
+
+
