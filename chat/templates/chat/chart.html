@@ -10,20 +10,22 @@
     <canvas id="stockChart"></canvas>
 
     <script>
+        
         let protocol='{{prot}}'
         document.addEventListener('DOMContentLoaded', () => {
             const socket = new WebSocket(protocol +'://' + window.location.host + '/ws/stocks/');
             const ctx = document.getElementById('stockChart').getContext('2d');
             const SYMBOLS = ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'FB', 'TSLA', 'NVDA']
             const stockData = {
-    AAPL: { volume: 0, price: 0 },
-    GOOGL: { volume: 0, price: 0 },
-    MSFT: { volume: 0, price: 0 },
-    AMZN: { volume: 0, price: 0 },
-    FB: { volume: 0, price: 0 },
-    TSLA: { volume: 0, price: 0 },
-    NVDA: { volume: 0, price: 0 },
-};
+            AAPL: { volume: 0, price: 0 },
+            GOOGL: { volume: 0, price: 0 },
+            MSFT: { volume: 0, price: 0 },
+            AMZN: { volume: 0, price: 0 },
+            FB: { volume: 0, price: 0 },
+            TSLA: { volume: 0, price: 0 },
+            NVDA: { volume: 0, price: 0 },
+        };
+
 let prices=[]
 let volumes=[]
 for(let i=0;i< Object.keys(stockData);i++){
@@ -83,7 +85,7 @@ const stockChart = new Chart(ctx, {
 
 
 
-// Create a function to update the chart with new data for a specific symbol
+
 function updateChart(symbol, volume, price) {
     // Update the data for the specified symbol
     stockData[symbol].volume = volume;
