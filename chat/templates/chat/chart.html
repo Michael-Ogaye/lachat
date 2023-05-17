@@ -10,8 +10,9 @@
     <canvas id="stockChart"></canvas>
 
     <script>
+        let protocol='{{prot}}'
         document.addEventListener('DOMContentLoaded', () => {
-            const socket = new WebSocket('ws://' + window.location.host + '/ws/stocks/');
+            const socket = new WebSocket(protocol +'://' + window.location.host + '/ws/stocks/');
             const ctx = document.getElementById('stockChart').getContext('2d');
             const SYMBOLS = ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'FB', 'TSLA', 'NVDA']
             const stockData = {
@@ -77,10 +78,6 @@ const stockChart = new Chart(ctx, {
     }
 });
 
-// Call the updateChart function with the initial data
-// for (let i = 0; i < SYMBOLS.length; i++) {
-//     updateChart(SYMBOLS[i], volumes[i], prices[i]);
-// }
 
 
 
