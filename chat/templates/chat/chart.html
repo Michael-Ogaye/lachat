@@ -1,0 +1,122 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Chart</title>
+    
+</head>
+<body>
+    <canvas id="stockChart"></canvas>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const socket = new WebSocket('ws://' + window.location.host + '/ws/stocks/');
+            const ctx = document.getElementById('stockChart').getContext('2d');
+            const SYMBOLS = ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'FB', 'TSLA', 'NVDA']
+            const stockData = {
+    AAPL: { volume: 0, price: 0 },
+    GOOGL: { volume: 0, price: 0 },
+    MSFT: { volume: 0, price: 0 },
+    AMZN: { volume: 0, price: 0 },
+    FB: { volume: 0, price: 0 },
+    TSLA: { volume: 0, price: 0 },
+    NVDA: { volume: 0, price: 0 },
+};
+let prices=[]
+let volumes=[]
+for(let i=0;i< Object.keys(stockData);i++){
+    prices.push(stockData[i].price)
+    volumes.push(stockData[i].volume)
+}
+
+
+
+// Create the initial chart
+const stockChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: SYMBOLS,
+        datasets: [
+            {
+                label: 'Volume',
+                data: volumes,
+                backgroundColor: 'rgba(75, 192, 192, 0.5)', // Bar graph color
+                yAxisID: 'y-axis-1'
+            },
+            {
+                label: 'Price',
+                data: prices,
+                borderColor: 'rgba(255, 99, 132, 1)', // Line graph color
+                yAxisID: 'y-axis-2',
+                type: 'line'
+            }
+        ]
+    },
+    options: {
+        scales: {
+            yAxes: [
+                {
+                    id: 'y-axis-1',
+                    type: 'linear',
+                    position: 'left',
+                    ticks: {
+                        beginAtZero: true
+                    }
+                },
+                {
+                    id: 'y-axis-2',
+                    type: 'linear',
+                    position: 'right',
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }
+            ]
+        }
+    }
+});
+
+// Call the updateChart function with the initial data
+// for (let i = 0; i < SYMBOLS.length; i++) {
+//     updateChart(SYMBOLS[i], volumes[i], prices[i]);
+// }
+
+
+
+
+
+// Create a function to update the chart with new data for a specific symbol
+function updateChart(symbol, volume, price) {
+    // Update the data for the specified symbol
+    stockData[symbol].volume = volume;
+    stockData[symbol].price = price;
+
+    // Get the chart instance
+    const stockChart = Chart.instances[0];
+
+    // Update the dataset for the specified symbol
+    const datasetIndex = stockChart.data.labels.indexOf(symbol);
+    stockChart.data.datasets[0].data[datasetIndex] = volume;
+    stockChart.data.datasets[1].data[datasetIndex] = price;
+
+    // Update the chart
+    stockChart.update();
+}
+
+
+            socket.onmessage = function (event) {
+                const stockData_j = JSON.parse(event.data);
+                
+
+                updateChart(stockData_j.symbol,stockData_j.volume,stockData_j.price)
+                
+
+               
+            };
+        });
+    </script>
+
+    <script src="{% static 'js/chart.min.js'%}"></script>
+</body>
+</html>
